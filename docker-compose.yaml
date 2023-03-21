@@ -1,0 +1,15 @@
+services:
+  gerev:
+    image: gerev:latest
+    ports:
+      - 80:80
+    volumes:
+      - ~/.gerev/storage:/opt/storage
+    build: .
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
